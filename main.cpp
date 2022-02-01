@@ -3,5 +3,9 @@
 
 
 int main (int argc, char* argv[]) {
-    return -1;
+    std::vector<std::string> args;
+    args.push_back("test");
+    std::string program = "/bin/echo";
+    Process process(program, args);
+    return 0;
 }
