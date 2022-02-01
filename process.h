@@ -9,7 +9,7 @@
 
 class Process {
 public:
-  Process(std::string name, std::vector<std::string[]> args);
+  Process(std::string name, std::vector<std::string> args);
   void construct();
 private:
   int _PID;
