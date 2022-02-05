@@ -3,6 +3,8 @@
 
 #include <stdlib.h>
 #include <unistd.h>
+#include <signal.h>
+#include <stdio.h>
 
 #include "process.h"
 
@@ -33,6 +35,8 @@ void Process::construct() {
         if (ret != 0) {
             perror("Error: ");
         }
+        // Pause the process
+        kill(pid, SIGSTOP);
     } else {
         this->_PID = pid;
     }
