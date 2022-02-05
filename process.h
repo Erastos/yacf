@@ -10,11 +10,14 @@
 class Process {
 public:
   Process(std::string name, std::vector<std::string> args);
-  void construct();
+  void createArgsString();
+  void start();
+
 private:
   int _PID;
   std::string _name;
   std::vector<std::string> _args;
+  char ** _args_string;
 };
 
 #endif
