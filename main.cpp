@@ -7,6 +7,6 @@ int main (int argc, char* argv[]) {
     args.push_back("10");
     std::string program = "/bin/sleep";
     Process process(program, args);
-    // process.start();
+    process.start();
     return 0;
 }
