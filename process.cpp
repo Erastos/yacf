@@ -41,8 +41,6 @@ void Process::start() {
             sprintf(error, "Error in Starting Process PID %d: ", pid);
             perror("Error starting process: ");
         }
-        // Pause the process
-        kill(pid, SIGSTOP);
     } else {
         this->_PID = pid;
     }
