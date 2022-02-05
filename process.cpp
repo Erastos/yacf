@@ -33,7 +33,9 @@ void Process::construct() {
     if ((pid = fork()) != 0) {
         int ret = execv(this->_name.c_str(), (char**)array);
         if (ret != 0) {
-            perror("Error: ");
+            char error[40];
+            sprintf(error, "Error in Starting Process PID %d: ", pid);
+            perror("Error starting process: ");
         }
         // Pause the process
         kill(pid, SIGSTOP);
