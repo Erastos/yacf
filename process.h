@@ -12,6 +12,7 @@ public:
   Process(std::string name, std::vector<std::string> args);
   void createArgsString();
   void start();
+  ~Process();
 
 private:
   int _PID;

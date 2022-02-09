@@ -44,4 +44,9 @@ void Process::start() {
     } else {
         this->_PID = pid;
     }
+
+}
+
+Process::~Process() {
+    delete[] this->_args_string;
 }
