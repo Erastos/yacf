@@ -14,7 +14,10 @@ Process::Process(std::string name, std::vector<std::string> args) {
     this->_PID = 0;
     this->_args = args;
     this->_args_string = new char*[this->_args.size()+2];
+    this->_input_pipe = -1;
+    this->_output_pipe = -1;
     createArgsString();
+    instantiatePipes();
 }
 
 void Process::createArgsString() {
@@ -28,6 +31,18 @@ void Process::createArgsString() {
 
     // Add the required NULL to the end of the array
     _args_string[_args.size()+1] = NULL;
+}
+
+void Process::instantiatePipes() {
+    int pipes[2];
+    int ret = pipe((int*)&pipes);
+    if (ret == -1) {
+        char error[40];
+        sprintf(error, "Pipes for %s failed to be created: ", this->_name.c_str());
+        perror(error);
+    }
+    this->_input_pipe = pipes[1];
+    this->_output_pipe = pipes[0];
 }
 
 void Process::start() {

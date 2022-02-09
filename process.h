@@ -12,13 +12,16 @@ public:
   Process(std::string name, std::vector<std::string> args);
   void createArgsString();
   void start();
+  void instantiatePipes();
   ~Process();
 
 private:
   int _PID;
   std::string _name;
   std::vector<std::string> _args;
-  char ** _args_string;
+  char **_args_string;
+  int _input_pipe;
+  int _output_pipe;
 };
 
 #endif
