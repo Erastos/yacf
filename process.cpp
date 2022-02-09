@@ -33,7 +33,7 @@ void Process::createArgsString() {
 void Process::start() {
     int pid;
     // Create an array to store the arguments
-    // Execute the provdied process application
+    // Execute the provided process application
     if ((pid = fork()) != 0) {
         int ret = execv(this->_name.c_str(), this->_args_string);
         if (ret != 0) {
