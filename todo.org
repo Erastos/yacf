@@ -1,0 +1,14 @@
+#+TITLE: Todo
+
+* Features
+** Process
+- [X] Create Process
+  - Keep process running, do not suspend
+    - When execv get executed, it completely replaces the current process image, so I will no longer have control over that process
+- [ ] Feed Process Input
+  - Let's use pipes for now
+  - If that doesn't work, switch to shared memory
+- [ ] Capture Output
+- [ ] Make into a library
+- [ ] Use Better Error Handling
+  - Forward errors to python
