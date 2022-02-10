@@ -35,7 +35,7 @@ void Process::createArgsString() {
 
 void Process::instantiatePipes() {
     int pipes[2];
-    int ret = pipe((int*)&pipes);
+    int ret = pipe(pipes);
     if (ret == -1) {
         char error[40];
         sprintf(error, "Pipes for %s failed to be created: ", this->_name.c_str());
@@ -49,7 +49,7 @@ void Process::start() {
     int pid;
     // Create an array to store the arguments
     // Execute the provided process application
-    if ((pid = fork()) != 0) {
+    if ((pid = fork()) == 0) {
         int ret = execv(this->_name.c_str(), this->_args_string);
         if (ret != 0) {
             char error[40];
