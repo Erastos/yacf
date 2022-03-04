@@ -45,6 +45,11 @@ void Process::instantiatePipes() {
     this->_output_pipe = pipes[0];
 }
 
+int Process::getPID() {
+    return this->_PID;
+}
+
+
 void Process::start() {
     int pid;
     // Create an array to store the arguments

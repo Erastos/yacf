@@ -13,6 +13,7 @@ public:
   void createArgsString();
   void start();
   void instantiatePipes();
+  int getPID();
   ~Process();
 
 private:
