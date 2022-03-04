@@ -5,10 +5,11 @@
 - [X] Create Process
   - Keep process running, do not suspend
     - When execv get executed, it completely replaces the current process image, so I will no longer have control over that process
-- [ ] Feed Process Input
+- [X] Feed Process Input
   - Let's use pipes for now
   - If that doesn't work, switch to shared memory
-- [ ] Capture Output
+- [X] Capture Output
+- [ ] Fix Error Involving Processes grabbing their own output from the pipe
 - [ ] Make into a library
 - [ ] Use Better Error Handling
   - Forward errors to python
