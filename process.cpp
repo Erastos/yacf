@@ -86,6 +86,11 @@ std::string Process::get(int bufferSize) {
     return std::string(cBuff);
 }
 
+void Process::send(std::string content) {
+    const char* buffer = content.data();
+    write(this->_write_pipe, buffer, content.size());
+}
+
 Process::~Process() {
     delete[] this->_args_string;
 }
