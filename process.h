@@ -14,6 +14,7 @@ public:
   void start();
   void instantiatePipes();
   int getPID();
+  std::string get(int bufSize);
   ~Process();
 
 private:

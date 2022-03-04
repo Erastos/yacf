@@ -5,6 +5,7 @@
 #include <unistd.h>
 #include <signal.h>
 #include <stdio.h>
+#include <string.h>
 
 #include "process.h"
 
@@ -74,6 +75,15 @@ void Process::start() {
         this->_PID = pid;
     }
 
+}
+
+std::string Process::get(int bufferSize) {
+    std::string buffer;
+    char cBuff[bufferSize];
+    memset(cBuff, 0, bufferSize);
+    read(this->_read_pipe, cBuff, bufferSize-1);
+    cBuff[bufferSize-1] = '\0';
+    return std::string(cBuff);
 }
 
 Process::~Process() {
