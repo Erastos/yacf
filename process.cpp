@@ -93,4 +93,7 @@ void Process::send(std::string content) {
 
 Process::~Process() {
     delete[] this->_args_string;
+    close(this->_read_pipe);
+    close(this->_write_pipe);
+    kill(this->_PID, SIGTERM);
 }
