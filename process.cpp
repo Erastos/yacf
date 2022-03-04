@@ -14,8 +14,8 @@ Process::Process(std::string name, std::vector<std::string> args) {
     this->_PID = 0;
     this->_args = args;
     this->_args_string = new char*[this->_args.size()+2];
-    this->_input_pipe = -1;
-    this->_output_pipe = -1;
+    this->_write_pipe = -1;
+    this->_read_pipe = -1;
     createArgsString();
     instantiatePipes();
 }
@@ -41,8 +41,8 @@ void Process::instantiatePipes() {
         sprintf(error, "Pipes for %s failed to be created: ", this->_name.c_str());
         perror(error);
     }
-    this->_input_pipe = pipes[1];
-    this->_output_pipe = pipes[0];
+    this->_write_pipe = pipes[1];
+    this->_read_pipe = pipes[0];
 }
 
 int Process::getPID() {
@@ -55,11 +55,20 @@ void Process::start() {
     // Create an array to store the arguments
     // Execute the provided process application
     if ((pid = fork()) == 0) {
+        int re1,re2;
+        re1 = dup2(this->_read_pipe, STDIN_FILENO);
+        re2 = dup2(this->_write_pipe, STDOUT_FILENO);
+        close(this->_read_pipe);
+        close(this->_write_pipe);
+        if (re1 == -1 || re2 == -1) {
+            perror("Could not change file descriptor");
+        }
+
         int ret = execv(this->_name.c_str(), this->_args_string);
         if (ret != 0) {
             char error[40];
             sprintf(error, "Error in Starting Process PID %d: ", pid);
-            perror("Error starting process: ");
+            perror(error);
         }
     } else {
         this->_PID = pid;

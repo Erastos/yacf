@@ -21,8 +21,8 @@ private:
   std::string _name;
   std::vector<std::string> _args;
   char **_args_string;
-  int _input_pipe;
-  int _output_pipe;
+  int _write_pipe;
+  int _read_pipe;
 };
 
 #endif
