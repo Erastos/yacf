@@ -18,7 +18,7 @@ int main (int argc, char* argv[]) {
     std::cout << "Contents: " << b << '\n';
     std::string c = "cat test.txt\n";
     process->send(c);
-    usleep(5000);
+    usleep(4000);
     std::string d = process->get(1000);
     std::cout << "Contents: " << d << '\n';
     return 0;

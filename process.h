@@ -23,8 +23,10 @@ private:
   std::string _name;
   std::vector<std::string> _args;
   char **_args_string;
-  int _write_pipe;
-  int _read_pipe;
+  int _write_pipe_stdout;
+  int _read_pipe_stdout;
+  int _write_pipe_stdin;
+  int _read_pipe_stdin;
 };
 
 #endif
