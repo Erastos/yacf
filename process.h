@@ -16,6 +16,7 @@ public:
   int getPID();
   std::string get(int bufSize);
   void send(std::string content);
+  void testPrint();
   ~Process();
 
 private:
