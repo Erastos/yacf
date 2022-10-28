@@ -10,6 +10,12 @@
   - If that doesn't work, switch to shared memory
 - [X] Capture Output
 - [ ] Fix Error Involving Processes grabbing their own output from the pipe
+  - Locking the files might work
+    - Wrapping all of the functions in locks did not work, so need to move the locks
+      - Look read pipe when writing too the application, and only unlock it when it is time to read from the application, and then lock it again
+    - If this doesn't work, named pipes (FIFO) might be a solution
+    - On a suggestion from a friend, use two pipes, one for reading from the process, and another for writing to the process
 - [ ] Make into a library
+  - Generate python bindings using tool
 - [ ] Use Better Error Handling
   - Forward errors to python
