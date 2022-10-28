@@ -9,7 +9,16 @@
   - Let's use pipes for now
   - If that doesn't work, switch to shared memory
 - [X] Capture Output
-- [ ] Fix Error Involving Processes grabbing their own output from the pipe
+- [X] Fix Error Involving Processes grabbing their own output from the pipe
+  - Locking the files might work
+    - Wrapping all of the functions in locks did not work, so need to move the locks
+      - Look read pipe when writing too the application, and only unlock it when it is time to read from the application, and then lock it again
+    - If this doesn't work, named pipes (FIFO) might be a solution
+    - On a suggestion from a friend, use two pipes, one for reading from the process, and another for writing to the process
 - [ ] Make into a library
 - [ ] Use Better Error Handling
   - Forward errors to python
+** IO Functions
+- [ ] getAll
+  - Function that will continue to pull input from the I/O device until there is no more
+  - Use select/poll to acomplish this task
