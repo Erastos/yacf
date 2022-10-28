@@ -16,6 +16,7 @@
     - If this doesn't work, named pipes (FIFO) might be a solution
     - On a suggestion from a friend, use two pipes, one for reading from the process, and another for writing to the process
 - [ ] Make into a library
+  - Generate python bindings using tool
 - [ ] Use Better Error Handling
   - Forward errors to python
 ** IO Functions
