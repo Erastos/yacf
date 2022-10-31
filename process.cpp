@@ -11,7 +11,6 @@
 
 #include "process.h"
 
-
 Process::Process(std::string name, std::vector<std::string> args) {
     this->_name = name;
     this->_PID = 0;

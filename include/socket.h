@@ -7,11 +7,15 @@ class Socket {
 public:
     Socket(std::string addr, int port);
     void createSockets();
+    void start();
+    std::string get(int num);
+    void put(std::string buf);
 
 private:
     std::string addr;
     int port;
     int sockfd;
+    int domain;
 };
 
 
