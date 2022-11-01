@@ -1,6 +1,7 @@
 #include <cerrno>
 #include <string>
 #include <algorithm>
+#include <iostream>
 
 #include <stdlib.h>
 #include <unistd.h>
@@ -9,7 +10,12 @@
 #include <string.h>
 #include <sys/file.h>
 
+#include <pybind11/pybind11.h>
+#include <pybind11/stl.h>
+
 #include "process.h"
+
+namespace py = pybind11;
 
 Process::Process(std::string name, std::vector<std::string> args) {
     this->_name = name;
@@ -145,4 +151,12 @@ Process::~Process() {
     close(this->_write_pipe_stdin);
     close(this->_write_pipe_stdout);
     kill(this->_PID, SIGTERM);
+}
+
+PYBIND11_MODULE(yprocess, m) {
+    py::class_<Process>(m, "Process")
+        .def(py::init<std::string, std::vector<std::string>>())
+        .def("start", &Process::start)
+        .def("get", &Process::get)
+        .def("send", &Process::send);
 }
