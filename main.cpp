@@ -3,8 +3,9 @@
 
 #include <sys/wait.h>
 #include <memory>
-#include "include/process.h"
-#include "include/socket.h"
+
+#include "process.h"
+#include "socket.h"
 
 int main (int argc, char* argv[]) {
     setvbuf(stdout, NULL, _IONBF, 0);

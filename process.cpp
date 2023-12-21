@@ -153,10 +153,3 @@ Process::~Process() {
     kill(this->_PID, SIGTERM);
 }
 
-PYBIND11_MODULE(yprocess, m) {
-    py::class_<Process>(m, "Process")
-        .def(py::init<std::string, std::vector<std::string>>())
-        .def("start", &Process::start)
-        .def("get", &Process::get)
-        .def("send", &Process::send);
-}

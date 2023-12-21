@@ -6,11 +6,11 @@
 #include <arpa/inet.h>
 #include <strings.h>
 #include <unistd.h>
+#include <pybind11/pybind11.h>
+#include <pybind11/stl.h>
 
 #include "socket.h"
 
-#include <pybind11/pybind11.h>
-#include <pybind11/stl.h>
 
 namespace py = pybind11;
 
@@ -57,13 +57,4 @@ std::string Socket::get(int num) {
 void Socket::put(std::string buf) {
     const char* buf_c = buf.data();
     send(this->sockfd, buf_c, buf.size(), 0);
-}
-
-
-PYBIND11_MODULE(ysocket, m) {
-    py::class_<Socket>(m, "Socket")
-        .def(py::init<std::string, int>())
-        .def("start", &Socket::start)
-        .def("get", &Socket::get)
-        .def("put", &Socket::put);
 }
